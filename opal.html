@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Opal — Where Smart Automation Meets Seamless Execution</title>
+<meta name="description" content="Jewelry that you can trust." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJiIiBjeD0iMzglIiBjeT0iMzAlIiByPSI3OCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmY2ZlZmQiLz48c3RvcCBvZmZzZXQ9IjU1JSIgc3RvcC1jb2xvcj0iI2RjZWZlOSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2I2ZDZjZCIvPjwvcmFkaWFsR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJjIj48ZWxsaXBzZSBjeD0iMjAiIGN5PSIyMCIgcng9IjE1IiByeT0iMTgiLz48L2NsaXBQYXRoPjwvZGVmcz48ZWxsaXBzZSBjeD0iMjAiIGN5PSIyMCIgcng9IjE1IiByeT0iMTgiIGZpbGw9InVybCgjYikiIHN0cm9rZT0iI2YxZWFkZCIgc3Ryb2tlLXdpZHRoPSIxLjEiLz48ZyBjbGlwLXBhdGg9InVybCgjYykiIG9wYWNpdHk9IjAuODIiPjxwYXRoIGQ9Ik00IDIyIDE2IDEzIDIwIDI1IDggMzFaIiBmaWxsPSIjNTZkNGMyIi8+PHBhdGggZD0iTTE3IDcgMjkgMTEgMjQgMjIgMTQgMThaIiBmaWxsPSIjZjNiNGQ0Ii8+PHBhdGggZD0iTTIyIDIwIDM0IDE3IDMyIDMxIDIxIDMwWiIgZmlsbD0iI2Y0Y2Q2YiIvPjxwYXRoIGQ9Ik05IDI4IDIwIDI2IDIzIDM3IDEwIDM3WiIgZmlsbD0iIzdlYjZmMCIvPjxwYXRoIGQ9Ik0yNCAyNCAzNSAyNyAzMCAzNyAyMiAzM1oiIGZpbGw9IiM4ZWU0OWQiLz48Y2lyY2xlIGN4PSIxMyIgY3k9IjEyIiByPSIzIiBmaWxsPSIjZWY5ZmM2IiBvcGFjaXR5PSIuNjUiLz48Y2lyY2xlIGN4PSIyOCIgY3k9IjI1IiByPSIyLjQiIGZpbGw9IiM2ZmQxZmYiIG9wYWNpdHk9Ii41NSIvPjwvZz48ZWxsaXBzZSBjeD0iMTUiIGN5PSIxMyIgcng9IjUiIHJ5PSIzLjIiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii41Ii8+PC9zdmc+Cg==" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{
+  --bg:#ffffff;
+  --bg2:#f5f7fa;
+  --panel:#ffffff;
+  --panel2:#f1f3f6;
+  --green:#16b3a3;
+  --green-bright:#0fa294;
+  --green-deep:#15a897;
+  --line:rgba(22,30,48,.12);
+  --line-strong:rgba(22,30,48,.22);
+  --text:#14161b;
+  --muted:#5b6470;
+  --muted2:#8a93a1;
+  --radius:16px;
+  --maxw:1280px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --serif:"Spectral",Georgia,"Times New Roman",serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;cursor:none}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.55;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+svg{display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+
+/* ---- buttons ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;font-family:var(--sans);font-weight:600;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;padding:1.05em 1.8em;border-radius:100px;cursor:pointer;border:1.5px solid transparent;transition:transform .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease),color .3s var(--ease);white-space:nowrap}
+.btn-fill{background:linear-gradient(120deg,#86dbcb,#a8c8f6,#ecb9e2,#f7d79c);color:#1b2230;background-size:180% 180%;animation:opalshift 8s ease infinite}
+.btn-fill:hover{transform:translateY(-2px);box-shadow:0 14px 34px -12px rgba(120,180,210,.55)}
+@keyframes opalshift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.btn-out{background:transparent;color:var(--text);border-color:var(--line-strong)}
+.btn-out:hover{border-color:var(--green-bright);color:var(--green-bright);transform:translateY(-2px)}
+
+/* ---- nav ---- */
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .4s var(--ease),border-color .4s var(--ease);border-bottom:1px solid transparent}
+header.scrolled{background:rgba(255,255,255,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:84px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .mark{width:34px;height:34px;flex:none}
+.brand .name{font-family:var(--serif);font-size:1.85rem;font-weight:500;letter-spacing:.01em;color:var(--text);line-height:1}
+.nav-links{display:flex;align-items:center;gap:38px}
+.nav-links a{font-size:.96rem;color:#e7e0d2;font-weight:400;transition:color .2s}
+.nav-links a:hover{color:var(--green-bright)}
+.nav-cta{display:flex;align-items:center;gap:18px}
+.contact-pill{border:1.5px solid var(--line-strong);border-radius:100px;padding:.75em 1.5em;font-size:.92rem;font-weight:500;transition:.3s var(--ease)}
+.contact-pill:hover{border-color:var(--green-bright);color:var(--green-bright)}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;width:34px;height:34px}
+.menu-btn span{display:block;width:22px;height:2px;background:var(--text);margin:5px auto;transition:.3s}
+
+/* ---- hero ---- */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+#dots{position:fixed;inset:0;width:100%;height:100%;z-index:0;opacity:.9}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:none;pointer-events:none}
+.hero-inner{position:relative;z-index:2;width:100%;padding-top:84px}
+.badge{display:inline-flex;align-items:center;gap:.6em;background:rgba(22,30,48,.04);border:1px solid var(--line-strong);border-radius:100px;padding:.6em 1.15em;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:#3a7d75;font-weight:600;margin-bottom:34px}
+.badge .led{width:7px;height:7px;border-radius:50%;background:var(--green-bright);box-shadow:0 0 10px var(--green-bright)}
+.badge .ef{width:20px;height:20px;border-radius:5px;object-fit:cover;margin:-2px 2px -2px -2px;display:block}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.8rem,6.6vw,5.6rem);line-height:1.04;letter-spacing:-.015em;max-width:16ch;color:var(--text)}
+.hero .sub{margin:30px 0 40px;font-size:clamp(1.05rem,1.7vw,1.3rem);color:var(--muted);max-width:42ch;line-height:1.6}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.email-slot{display:flex;align-items:center;gap:6px;background:var(--panel);border:1.5px solid var(--line-strong);border-radius:100px;padding:5px 5px 5px 20px;transition:border-color .3s var(--ease),box-shadow .3s var(--ease)}
+.email-slot:focus-within{border-color:var(--green);box-shadow:0 0 0 3px rgba(22,179,163,.15)}
+.email-slot input{border:none;outline:none;background:transparent;font-family:var(--sans);font-size:.95rem;color:var(--text);width:190px}
+.email-slot input::placeholder{color:var(--muted2)}
+.email-slot button{flex:none;border:none;cursor:pointer;border-radius:100px;padding:.7em 2.6em;display:flex;align-items:center;justify-content:center;color:#1b2230;background:linear-gradient(120deg,#86dbcb,#a8c8f6,#ecb9e2,#f7d79c);background-size:180% 180%;animation:opalshift 8s ease infinite;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.email-slot button svg{width:24px;height:20px;display:block}
+.email-slot button:hover{transform:translateY(-1px);box-shadow:0 10px 26px -12px rgba(120,180,210,.6)}
+@media(max-width:680px){.email-slot input{width:140px}}
+.form-msg{margin-top:14px;font-size:.92rem;font-weight:500;min-height:1.2em;opacity:0;transform:translateY(4px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.form-msg.show{opacity:1;transform:none}
+
+/* iridescent arrow cursor — shown only while hovering the email field */
+#curDot{display:none;position:fixed;top:0;left:0;pointer-events:none;z-index:99999;width:16.5px;height:20px;
+  background:conic-gradient(from 0deg,#2ec6b3,#4f9bf0,#e575c0,#f0bb3e,#52ce72,#2ec6b3);
+  -webkit-clip-path:polygon(0 0,0 78%,28% 60%,48% 100%,63% 93%,44% 56%,74% 56%);
+          clip-path:polygon(0 0,0 78%,28% 60%,48% 100%,63% 93%,44% 56%,74% 56%);
+  animation:curhue 4.5s linear infinite}
+#curDot.on{display:block}
+@keyframes curhue{from{filter:saturate(1.55) hue-rotate(0deg) drop-shadow(0 1px 1.5px rgba(20,20,40,.45))}
+                  to{filter:saturate(1.55) hue-rotate(360deg) drop-shadow(0 1px 1.5px rgba(20,20,40,.45))}}
+
+
+/* ---- logo marquee ---- */
+.trust{position:absolute;left:0;right:0;bottom:34px;z-index:2}
+.trust .row{display:flex;align-items:center;gap:40px}
+.trust .tag{font-size:.95rem;color:var(--muted2);white-space:nowrap;flex:none;font-weight:400}
+.marquee{overflow:hidden;flex:1;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-track{display:flex;gap:64px;width:max-content;animation:scroll 30s linear infinite;align-items:center}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.lipsum{display:flex;align-items:center;gap:9px;color:#d2c6ad;opacity:.62;font-weight:700;font-size:1.25rem;white-space:nowrap;letter-spacing:-.01em}
+.lipsum svg{width:24px;height:24px;flex:none}
+
+/* ---- sections ---- */
+.sec{padding:clamp(80px,11vw,150px) 0;position:relative}
+.sec-head{max-width:660px;margin:0 auto 64px;text-align:center}
+.eyebrow{display:inline-block;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green-bright);font-weight:600;margin-bottom:18px}
+.sec-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,4.4vw,3.4rem);line-height:1.08;letter-spacing:-.01em;color:#fff}
+.sec-head p{margin-top:20px;color:var(--muted);font-size:1.12rem}
+
+/* features */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.feat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:34px 30px;transition:.4s var(--ease)}
+.feat:hover{transform:translateY(-6px);border-color:var(--line-strong);background:var(--panel2)}
+.feat .ic{width:52px;height:52px;border-radius:13px;background:rgba(212,171,110,.1);border:1px solid var(--line-strong);display:grid;place-items:center;margin-bottom:22px}
+.feat .ic svg{width:25px;height:25px;stroke:var(--green-bright)}
+.feat h3{font-size:1.32rem;font-weight:600;margin-bottom:10px;letter-spacing:-.01em}
+.feat p{color:var(--muted);font-size:.98rem}
+
+/* how it works */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:s}
+.step{position:relative;padding:34px 30px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,var(--panel),transparent)}
+.step::before{counter-increment:s;content:"0" counter(s);font-family:var(--serif);font-size:2.6rem;color:var(--green);opacity:.55;display:block;margin-bottom:16px;line-height:1}
+.step h3{font-size:1.25rem;font-weight:600;margin-bottom:9px}
+.step p{color:var(--muted);font-size:.97rem}
+.step .conn{display:none}
+
+/* metrics */
+.metrics{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.metric .num{font-family:var(--serif);font-size:clamp(2.6rem,5vw,3.8rem);color:#fff;line-height:1;font-weight:500}
+.metric .num span{color:var(--green-bright)}
+.metric .lbl{margin-top:12px;color:var(--muted);font-size:.98rem}
+
+/* showcase / case study */
+.showcase{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.showcase h2{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,3.6vw,2.9rem);line-height:1.1;color:#fff;letter-spacing:-.01em}
+.showcase p{color:var(--muted);margin-top:20px;font-size:1.08rem}
+.checks{list-style:none;margin-top:28px;display:grid;gap:14px}
+.checks li{display:flex;gap:12px;align-items:flex-start;color:#e5ddcc;font-size:1rem}
+.checks .ck{width:24px;height:24px;border-radius:50%;background:rgba(212,171,110,.13);display:grid;place-items:center;flex:none;margin-top:1px}
+.checks .ck svg{width:13px;height:13px;stroke:var(--green-bright)}
+.panel-art{position:relative;aspect-ratio:4/3.4;border-radius:20px;border:1px solid var(--line);background:radial-gradient(120% 120% at 75% 15%,#2c2112,var(--panel) 70%);overflow:hidden;padding:26px}
+.flow-card{position:absolute;background:var(--panel2);border:1px solid var(--line-strong);border-radius:13px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 18px 40px -24px rgba(0,0,0,.7)}
+.flow-card .d{width:34px;height:34px;border-radius:9px;background:rgba(212,171,110,.14);display:grid;place-items:center;flex:none}
+.flow-card .d svg{width:17px;height:17px;stroke:var(--green-bright)}
+.flow-card b{font-size:.92rem;font-weight:600;display:block}
+.flow-card small{color:var(--muted2);font-size:.78rem}
+.fc1{top:26px;left:26px;animation:bob 6s var(--ease) infinite}
+.fc2{top:42%;right:26px;animation:bob 6s var(--ease) infinite .8s}
+.fc3{bottom:26px;left:40px;animation:bob 6s var(--ease) infinite 1.6s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.flow-line{position:absolute;inset:0;z-index:0}
+
+/* pricing */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.plan{border:1px solid var(--line);border-radius:var(--radius);padding:34px 30px;background:var(--panel);display:flex;flex-direction:column;transition:.4s var(--ease)}
+.plan:hover{transform:translateY(-6px);border-color:var(--line-strong)}
+.plan.feat-plan{background:linear-gradient(180deg,rgba(176,125,62,.16),var(--panel));border-color:var(--green)}
+.plan .pname{font-size:1.05rem;font-weight:600;letter-spacing:.02em}
+.plan .pop{float:right;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;background:var(--green-deep);color:#fff;padding:.35em .8em;border-radius:100px}
+.plan .cost{font-family:var(--serif);font-size:3rem;color:#fff;margin:18px 0 4px;font-weight:500}
+.plan .cost span{font-family:var(--sans);font-size:1rem;color:var(--muted)}
+.plan .pdesc{color:var(--muted);font-size:.95rem;min-height:42px}
+.plan ul{list-style:none;margin:24px 0 28px;display:grid;gap:12px}
+.plan li{display:flex;gap:10px;align-items:flex-start;font-size:.95rem;color:#e0d8c6}
+.plan li svg{width:16px;height:16px;stroke:var(--green-bright);flex:none;margin-top:3px}
+.plan .btn{margin-top:auto;width:100%}
+
+/* CTA */
+.cta-band{position:relative;overflow:hidden;border:1px solid var(--line-strong);border-radius:28px;background:radial-gradient(120% 160% at 50% 0%,#2e2413,var(--panel) 70%);text-align:center;padding:clamp(50px,8vw,90px) 32px}
+.cta-band h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,4.6vw,3.4rem);color:#fff;line-height:1.08;max-width:18ch;margin:0 auto 18px}
+.cta-band p{color:var(--muted);max-width:46ch;margin:0 auto 34px;font-size:1.1rem}
+.cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:72px 0 40px;margin-top:clamp(80px,11vw,140px)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:54px}
+.foot-brand .brand{margin-bottom:18px}
+.foot-brand p{color:var(--muted);font-size:.98rem;max-width:30ch}
+.foot-col h5{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted2);margin-bottom:18px;font-weight:600}
+.foot-col a{display:block;color:#d8cdb6;margin-bottom:12px;font-size:.97rem;transition:color .2s}
+.foot-col a:hover{color:var(--green-bright)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:30px;border-top:1px solid var(--line);color:var(--muted2);font-size:.9rem}
+.socials{display:flex;gap:14px}
+.socials a{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:.3s var(--ease)}
+.socials a:hover{border-color:var(--green-bright);background:rgba(212,171,110,.1)}
+.socials svg{width:17px;height:17px;stroke:#d8cdb6}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+/* responsive */
+@media(max-width:980px){
+  .feat-grid,.steps,.price-grid{grid-template-columns:1fr}
+  .metric-grid{grid-template-columns:repeat(2,1fr);gap:36px 20px}
+  .showcase{grid-template-columns:1fr;gap:40px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  #dots{opacity:.5}
+}
+@media(max-width:680px){
+  .wrap{padding:0 22px}
+  .hero-inner{transform:translateY(64px)}
+  .nav-links{display:none}
+  .nav-links.open{display:flex;position:absolute;top:84px;left:16px;right:16px;flex-direction:column;align-items:flex-start;gap:20px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px}
+  .contact-pill{display:none}
+  .menu-btn{display:block}
+  .trust .tag{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-brand{grid-column:1/-1}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="hdr">
+  <nav class="nav wrap">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 40 40" fill="none">
+        <defs>
+          <radialGradient id="opalBase" cx="38%" cy="30%" r="78%">
+            <stop offset="0%" stop-color="#fcfefd"/>
+            <stop offset="55%" stop-color="#dcefe9"/>
+            <stop offset="100%" stop-color="#b6d6cd"/>
+          </radialGradient>
+          <clipPath id="opalClip"><ellipse cx="20" cy="20" rx="15" ry="18"/></clipPath>
+        </defs>
+        <ellipse cx="20" cy="20" rx="15" ry="18" fill="url(#opalBase)" stroke="#f1eadd" stroke-width="1.1"/>
+        <g clip-path="url(#opalClip)" opacity="0.82">
+          <path d="M4 22 L16 13 L20 25 L8 31 Z" fill="#56d4c2"/>
+          <path d="M17 7 L29 11 L24 22 L14 18 Z" fill="#f3b4d4"/>
+          <path d="M22 20 L34 17 L32 31 L21 30 Z" fill="#f4cd6b"/>
+          <path d="M9 28 L20 26 L23 37 L10 37 Z" fill="#7eb6f0"/>
+          <path d="M24 24 L35 27 L30 37 L22 33 Z" fill="#8ee49d"/>
+          <circle cx="13" cy="12" r="3" fill="#ef9fc6" opacity=".65"/>
+          <circle cx="28" cy="25" r="2.4" fill="#6fd1ff" opacity=".55"/>
+        </g>
+        <ellipse cx="15" cy="13" rx="5" ry="3.2" fill="#ffffff" opacity=".5"/>
+      </svg>
+      <span class="name">Opal</span>
+    </a>
+    <div class="nav-cta">
+      <a class="contact-pill" href="mailto:langstonreid1@gmail.com">Contact Us</a>
+    </div>
+  </nav>
+</header>
+
+<span id="top"></span>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="dots"></canvas>
+  <div class="hero-inner wrap">
+    <span class="badge"><img class="ef" src="Resources/EFLogo_chip.png" alt="Entrepreneurs First" />Backed by EF</span>
+    <h1>Life with Opal</h1>
+    <p class="sub">Jewelry that you can trust.<br>Your life in context.</p>
+    <div class="hero-actions">
+      <form class="email-slot" id="waitForm">
+        <input type="email" id="waitEmail" placeholder="Enter your email" aria-label="Email address" required />
+        <button type="submit" aria-label="Submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+      </form>
+    </div>
+    <p class="form-msg" id="waitMsg" role="status"></p>
+  </div>
+
+</section>
+
+
+<div id="curDot"></div>
+
+<script>
+/* ---------- iridescent arrow cursor, shown only over the email field ---------- */
+(function(){
+  if (matchMedia('(pointer:coarse)').matches) return;     // skip touch devices
+  const dot=document.getElementById('curDot');
+  addEventListener('mousemove', e=>{ dot.style.left=e.clientX+'px'; dot.style.top=e.clientY+'px'; }, {passive:true});
+  const slot=document.querySelector('.email-slot');
+  if(slot){
+    slot.addEventListener('mouseenter', ()=>dot.classList.add('on'));
+    slot.addEventListener('mouseleave', ()=>dot.classList.remove('on'));
+  }
+})();
+
+/* ---------- Waitlist -> Supabase (same project + table the webhook syncs to a Google Sheet) ---------- */
+const SUPABASE_URL='https://omfnsjrsswuxkqubagzr.supabase.co';
+const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9tZm5zanJzc3d1eGtxdWJhZ3pyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMjk4MjgsImV4cCI6MjA5NjcwNTgyOH0.lJuGVbc3XZRiQoPPIZjtp1bYNezTVrjt4xKF7-sO-AA';
+const _db = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+const waitForm=document.getElementById('waitForm'),
+      waitEmail=document.getElementById('waitEmail'),
+      waitMsg=document.getElementById('waitMsg');
+const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function showWaitMsg(text,ok){
+  waitMsg.textContent=text;
+  waitMsg.style.color=ok?'#1d9e6f':'#d8443c';
+  waitMsg.classList.add('show');
+}
+waitForm.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const email=waitEmail.value.trim();
+  if(!EMAIL_RE.test(email)){ showWaitMsg('Please enter a valid email.',false); return; }
+  if(!_db){ showWaitMsg("Couldn't reach the server — please try again.",false); return; }
+  const btn=waitForm.querySelector('button'); btn.disabled=true;
+  const { error } = await _db.from('waitlist').insert({ email });
+  btn.disabled=false;
+  if(error){
+    if(error.code==='23505'){ showWaitMsg("You're already on the list ✓",true); waitEmail.value=''; }
+    else { console.error(error); showWaitMsg('Something went wrong — please try again.',false); }
+    return;
+  }
+  waitEmail.value=''; showWaitMsg("You're on the list ✓ — we'll be in touch.",true);
+});
+
+// nav scroll state
+const hdr=document.getElementById('hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>10));
+
+
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+
+/* ---------- animated rotating ring: shaded green form + dark halftone grid ----------
+   The video shows a solid, SHADED light-green torus (3D volume, lit from the left)
+   with a regular dark halftone grid (diamonds) punched into it, and crisp edges.
+   We render a 3D torus -> snap to a grid -> fill shaded green tiles where covered,
+   then overlay dark diamonds so the green survives as a fine cross/X lattice.        */
+const cv=document.getElementById('dots'),cx=cv.getContext('2d');
+const GAP=23;                                   // X-mark grid spacing (~1.3x more marks)
+let W,H,cols,rows,shade,depth,trail,strayBuf,cxC,cyC,R,a;
+const NU=230, NV=52, baseUV=[];                 // dense torus sampling
+for(let i=0;i<NU;i++){const u=i/NU*Math.PI*2;for(let j=0;j<NV;j++){const v=j/NV*Math.PI*2;baseUV.push(u,v);}}
+
+function build(){
+  const dpr=Math.min(devicePixelRatio||1,2);
+  W=cv.clientWidth;H=cv.clientHeight;
+  cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);
+  cols=Math.ceil(W/GAP)+2;rows=Math.ceil(H/GAP)+2;
+  shade=new Float32Array(cols*rows);
+  depth=new Float32Array(cols*rows);
+  cxC=W*0.82; cyC=H*0.48;                        // ring centre (further right, bleeds off-edge)
+  const m=Math.min(W,H);
+  R=m*0.281;                                     // major radius (same outer size)
+  a=R*0.20;                                      // thinner tube -> hole (R-a) is 2x larger
+  trail=new Float32Array(cols*rows);             // mouse-reveal buffer (decays each frame)
+  // ambient faint "sparkle" X's scattered around the page (persistent, brighter near the ring)
+  strayBuf=new Float32Array(cols*rows);
+  const cntCol=Math.round(cxC/GAP), cntRow=Math.round(cyC/GAP), spread=Math.round((R+a)*1.7/GAP);
+  for(let k=0;k<35;k++){
+    const gx=cntCol+Math.round((Math.random()*2-1)*spread);
+    const gy=cntRow+Math.round((Math.random()*2-1)*spread);
+    if(gx<0||gy<0||gx>=cols||gy>=rows)continue;
+    strayBuf[gy*cols+gx]=0.05+Math.random()*0.09;
+  }
+}
+build();addEventListener('resize',build);
+
+// reveal grid X's along the mouse trail (canvas is fixed at 0,0 so CSS px == clientX/Y)
+addEventListener('mousemove', e=>{
+  if(!trail) return;
+  const cgx=e.clientX/GAP, cgy=e.clientY/GAP, rad=0.5, g0x=Math.round(cgx), g0y=Math.round(cgy);
+  for(let dy=-3;dy<=3;dy++)for(let dx=-3;dx<=3;dx++){
+    const gx=g0x+dx, gy=g0y+dy;
+    if(gx<0||gy<0||gx>=cols||gy>=rows)continue;
+    const d=Math.hypot(gx-cgx, gy-cgy); if(d>rad)continue;
+    const idx=gy*cols+gx, v=(1-d/rad);
+    if(v>trail[idx]) trail[idx]=v;                // set; frame() decays it for the fade-out trail
+  }
+}, {passive:true});
+
+// click ripple: an expanding wavefront that lights X's as it passes, fading behind
+let ripples=[];
+addEventListener('pointerdown', e=>{ ripples.push({cx:e.clientX, cy:e.clientY, r:0}); if(ripples.length>6)ripples.shift(); });
+
+// light direction: straight horizontal along the -x axis (from the left)
+let Lx=-1,Ly=0,Lz=0;{const n=Math.hypot(Lx,Ly,Lz);Lx/=n;Ly/=n;Lz/=n;}
+const TILTY=0.30,sinY=Math.sin(TILTY),cosY=Math.cos(TILTY);  // constant yaw for depth
+let phi=0,last=0;
+// desktop: canvas opacity is raised to .9 so the RING is 1.5x as opaque; dim the
+// non-ring marks (sparkles/trail/ripple) back to their .6 look. mobile: unchanged.
+let otherMult=1;
+const setMult=()=>{ otherMult = matchMedia('(min-width:981px)').matches ? 0.667 : 1; };
+setMult(); addEventListener('resize', setMult);
+
+// dark green (shadow) -> light green (lit)
+// iridescent opal play-of-color: hue from position + time, brightness from shade
+function hueAt(gx,gy,t){
+  const v=Math.sin(gx*0.26+t)+Math.cos(gy*0.23-t*0.8)+Math.sin((gx+gy)*0.16+t*0.5);
+  return ((v+3)/6)*360;                          // 0..360, smooth shifting bands
+}
+
+function frame(ts){
+  requestAnimationFrame(frame);
+  if(ts-last<32)return; last=ts;               // ~30fps cap
+  phi+=0.050;
+  const sinP=Math.sin(phi),cosP=Math.cos(phi);
+  shade.fill(0); depth.fill(-1e9);
+  for(let i=0;i<trail.length;i++) trail[i]*=0.90;   // fade the mouse trail
+  // expand click wavefronts (drawn as a crisp ring in the render pass below)
+  for(const rp of ripples) rp.r+=GAP*0.43;   // 1/3 of previous speed (1.28 -> 0.43)
+  if(ripples.length) ripples=ripples.filter(rp=>rp.r<225);   // gone once exp fade ~0
+  // project the tipping, lit torus onto the grid; keep nearest surface per cell
+  for(let p=0;p<baseUV.length;p+=2){
+    const u=baseUV[p],v=baseUV[p+1];
+    const cu=Math.cos(u),su=Math.sin(u),cvv=Math.cos(v),svv=Math.sin(v);
+    const rr=R+a*cvv;
+    let x=rr*cu, y=rr*su, z=a*svv;             // point (ring in X-Y plane, hole-axis Z)
+    let nx=cu*cvv, ny=su*cvv, nz=svv;          // outward tube normal
+    // tip about X axis over time -> silhouette opens/closes (the rotation)
+    let y1=y*cosP-z*sinP,   z1=y*sinP+z*cosP,   x1=x;
+    let ny1=ny*cosP-nz*sinP, nz1=ny*sinP+nz*cosP, nx1=nx;
+    // constant yaw about Y
+    let x2=x1*cosY+z1*sinY, z2=-x1*sinY+z1*cosY, y2=y1;
+    let nx2=nx1*cosY+nz1*sinY, nz2=-nx1*sinY+nz1*cosY, ny2=ny1;
+    const gx=Math.round((cxC+x2)/GAP), gy=Math.round((cyC+y2)/GAP);
+    if(gx<0||gy<0||gx>=cols||gy>=rows)continue;
+    const idx=gy*cols+gx;
+    if(z2<=depth[idx])continue;                // nearest wins
+    let diff=nx2*Lx+ny2*Ly+nz2*Lz; if(diff<0)diff=0;
+    let lf=(1 - x2/(R+a))/2; if(lf<0)lf=0; if(lf>1)lf=1;   // 1 at left edge .. 0 at right
+    let s=0.05+0.50*diff+0.45*lf; if(s>1)s=1;  // 3D volume + clear left light source
+    depth[idx]=z2; shade[idx]=s;
+  }
+  // render: ring shade OR mouse-trail reveal, whichever is brighter per cell
+  cx.clearRect(0,0,W,H);
+  cx.lineCap='round';
+  const e=GAP*0.34;                             // X half-length
+  const rMax=Math.hypot(W,H)+GAP, rBand=GAP*1.5;  // ripple wavefront thickness
+  for(let gy=0;gy<rows;gy++)for(let gx=0;gx<cols;gx++){
+    const idx=gy*cols+gx;
+    const px=gx*GAP, py=gy*GAP;
+    let s=shade[idx]; let ring=true;              // ring vs non-ring (sparkle/trail/ripple)
+    let o=trail[idx]; const sv=strayBuf[idx]; if(sv>o)o=sv;
+    if(ripples.length){                           // crisp expanding ring from each click
+      for(const rp of ripples){ const dd=Math.abs(Math.hypot(px-rp.cx,py-rp.cy)-rp.r); if(dd<rBand){ const f=(1-dd/rBand)*Math.exp(-rp.r/55); if(f>o)o=f; } }
+    }
+    if(o>s){ s=o; ring=false; }
+    if(s<=0.02)continue;
+    const hue=hueAt(gx,gy,phi);                   // iridescent colour
+    // light from the left: lit side vivid+opaque+thicker, shadow side pale->white & faint
+    const sat=58+s*34;                            // saturated, visible on white
+    const lig=58-s*28;                            // darker overall (58 -> 30), lit side deepest
+    let al=0.7+s*0.28; if(!ring)al*=otherMult;    // ring keeps full (1.5x) opacity; others dimmed on desktop
+    cx.lineWidth=2.0+s*1.4;                       // lit strokes a touch thicker
+    cx.strokeStyle='hsla('+(hue|0)+','+(sat|0)+'%,'+(lig|0)+'%,'+al.toFixed(2)+')';
+    cx.beginPath();
+    cx.moveTo(px-e,py-e); cx.lineTo(px+e,py+e);
+    cx.moveTo(px+e,py-e); cx.lineTo(px-e,py+e);
+    cx.stroke();
+  }
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
