@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>/* desktop site: send phones / narrow screens to the mobile version */(function(){try{var m=matchMedia('(max-width:768px)').matches||/Mobi|Android|iPhone|iPod|Windows Phone/i.test(navigator.userAgent);if(m)location.replace('opal.html');}catch(e){}})();</script>
 <title>Opal — Futures</title>
 <meta name="description" content="Opal Futures — the shape of what's coming." />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJiIiBjeD0iMzglIiBjeT0iMzAlIiByPSI3OCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmY2ZlZmQiLz48c3RvcCBvZmZzZXQ9IjU1JSIgc3RvcC1jb2xvcj0iI2RjZWZlOSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2I2ZDZjZCIvPjwvcmFkaWFsR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJjIj48ZWxsaXBzZSBjeD0iMjAiIGN5PSIyMCIgcng9IjE1IiByeT0iMTgiLz48L2NsaXBQYXRoPjwvZGVmcz48ZWxsaXBzZSBjeD0iMjAiIGN5PSIyMCIgcng9IjE1IiByeT0iMTgiIGZpbGw9InVybCgjYikiIHN0cm9rZT0iI2YxZWFkZCIgc3Ryb2tlLXdpZHRoPSIxLjEiLz48ZyBjbGlwLXBhdGg9InVybCgjYykiIG9wYWNpdHk9IjAuODIiPjxwYXRoIGQ9Ik00IDIyIDE2IDEzIDIwIDI1IDggMzFaIiBmaWxsPSIjNTZkNGMyIi8+PHBhdGggZD0iTTE3IDcgMjkgMTEgMjQgMjIgMTQgMThaIiBmaWxsPSIjZjNiNGQ0Ii8+PHBhdGggZD0iTTIyIDIwIDM0IDE3IDMyIDMxIDIxIDMwWiIgZmlsbD0iI2Y0Y2Q2YiIvPjxwYXRoIGQ9Ik05IDI4IDIwIDI2IDIzIDM3IDEwIDM3WiIgZmlsbD0iIzdlYjZmMCIvPjxwYXRoIGQ9Ik0yNCAyNCAzNSAyNyAzMCAzNyAyMiAzM1oiIGZpbGw9IiM4ZWU0OWQiLz48Y2lyY2xlIGN4PSIxMyIgY3k9IjEyIiByPSIzIiBmaWxsPSIjZWY5ZmM2IiBvcGFjaXR5PSIuNjUiLz48Y2lyY2xlIGN4PSIyOCIgY3k9IjI1IiByPSIyLjQiIGZpbGw9IiM2ZmQxZmYiIG9wYWNpdHk9Ii41NSIvPjwvZz48ZWxsaXBzZSBjeD0iMTUiIGN5PSIxMyIgcng9IjUiIHJ5PSIzLjIiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii41Ii8+PC9zdmc+Cg==" />
@@ -28,24 +29,50 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 #x{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+/* page-1 product shot: bracelet turntable + iridescent glow, in the LEFT column (ring stays on the right) */
+.product-col{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:440px;animation:contentReveal 1.9s cubic-bezier(.7,0,.2,1) both}
+.product-col .sub{margin:0 0 26px;max-width:34ch}
+.product-shot{position:relative;width:clamp(120px,16vw,180px);margin-bottom:12px}
+.product-glow{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);width:155%;height:155%;border-radius:50%;z-index:0;pointer-events:none;background:radial-gradient(circle at 50% 45%,rgba(168,200,246,.60),rgba(236,185,226,.46) 38%,rgba(134,219,203,.34) 62%,rgba(247,215,156,.20) 78%,transparent 82%);filter:blur(34px)}
+#bracelet{position:relative;z-index:1;width:100%;height:auto;display:block;filter:drop-shadow(0 22px 40px rgba(60,70,90,.18))}
 
 /* nav */
 header{position:fixed;top:0;left:0;right:0;z-index:3}
-.nav{display:flex;align-items:center;justify-content:space-between;height:84px;max-width:1280px;margin:0 auto;padding:0 32px}
-.brand{display:flex;align-items:center;gap:12px}
-.brand .mark{width:34px;height:34px;flex:none}
-.brand .name{font-family:var(--serif);font-size:1.85rem;font-weight:500;color:var(--text);line-height:1}
+.nav{display:flex;align-items:center;justify-content:flex-end;height:84px;max-width:1280px;margin:0 auto;padding:0 32px;position:relative}
+.brand{display:flex;align-items:center;gap:14px;position:absolute;inset:0;margin:auto;width:max-content;height:max-content;text-decoration:none;animation:logoReveal 1.9s cubic-bezier(.7,0,.2,1) both}
+.brand .mark{width:44px;height:44px;flex:none}
+.brand .name{font-family:var(--serif);font-size:2.2rem;font-weight:500;color:var(--text);line-height:1}
+/* intro: logo starts large over the hero, holds ~1s, then retracts to the header centre */
+@keyframes logoReveal{0%,52%{transform:translateY(45vh) scale(4.4);pointer-events:none}100%{transform:none;pointer-events:auto}}
+/* hero content stays hidden under the logo, then fades in as the logo retracts up */
+@keyframes contentReveal{0%,52%{opacity:0}100%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.brand,.product-col{animation:none}}
 .contact-pill{border:1.5px solid var(--line-strong);border-radius:100px;padding:.75em 1.5em;font-size:.92rem;font-weight:500;color:var(--text);text-decoration:none;transition:.3s var(--ease)}
 .contact-pill:hover{border-color:var(--green-bright);color:var(--green-bright)}
 
 /* left-side screens (hero + waitlist) */
 .hero-left{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;z-index:2;width:100%;max-width:1280px;margin:0 auto;padding:84px 32px 0}
+.hero-nudge{padding-left:clamp(40px,11vw,185px);transform:translate(20px,-20px)}   /* page 1: shift product content a little to the right + a smidget NE */
 
 /* pre-order CTA (hero) */
 .preorder-btn{align-self:flex-start;display:inline-flex;align-items:baseline;gap:.5em;border:none;cursor:pointer;text-decoration:none;border-radius:100px;padding:1.05em 2.4em;font-family:var(--sans);font-size:1.12rem;font-weight:600;color:#1b2230;background:linear-gradient(120deg,#86dbcb,#a8c8f6,#ecb9e2,#f7d79c);background-size:180% 180%;animation:opalshift 8s ease infinite;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
 .preorder-btn:hover{transform:translateY(-1px);box-shadow:0 12px 30px -12px rgba(120,180,210,.6)}
 .preorder-btn .price{font-weight:700;opacity:.85}
 .preorder-note{margin-top:16px;font-size:.9rem;color:var(--muted2);align-self:flex-start}
+
+/* colour swatches (decorative) + BUY NOW button */
+.buy-block{display:flex;flex-direction:column;align-items:center}
+.swatches{display:flex;align-items:center;gap:14px;margin:0 0 16px}
+.stock{margin:0 0 6px;font-size:.9rem;color:var(--muted);font-weight:500;white-space:nowrap}
+.stock strong{color:var(--text);font-weight:700}
+.sw{width:34px;height:34px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:transform .2s var(--ease)}
+.sw:hover{transform:scale(1.1)}
+.sw.is-selected{box-shadow:0 0 0 2px #fff,0 0 0 4px currentColor}
+.sw-silver{background:linear-gradient(135deg,#eef0f3,#b4b9c3);color:#aeb3bd}
+.sw-gold{background:linear-gradient(135deg,#f6e4a6,#c9a24b);color:#c9a24b}
+.buy-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:.9em;background:linear-gradient(120deg,#86dbcb,#a8c8f6,#ecb9e2,#f7d79c);background-size:180% 180%;animation:opalshift 8s ease infinite;color:#1b2230;font-family:var(--sans);font-weight:700;font-size:1.02rem;letter-spacing:.06em;text-transform:uppercase;border-radius:100px;padding:.5em .5em .5em 1.9em;text-decoration:none;box-shadow:0 14px 32px -14px rgba(120,180,210,.55);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.buy-btn:hover{transform:translateY(-2px);box-shadow:0 18px 40px -14px rgba(120,180,210,.7)}
+.buy-arrow{display:grid;place-items:center;width:2.5em;height:2.5em;border-radius:50%;background:#14161b;color:#fff;font-size:1.05rem;flex:none}
 
 /* waitlist screen (one page lower) */
 .eyebrow{display:inline-block;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:#3a7d75;font-weight:600;margin-bottom:18px;align-self:flex-start}
@@ -101,12 +128,22 @@ header{position:fixed;top:0;left:0;right:0;z-index:3}
   </nav>
 </header>
 
-<section class="hero-left">
-  <span class="badge"><img class="ef" src="Resources/EFLogo_chip.png" alt="Entrepreneurs First" />Backed by EF</span>
-  <h1 class="title">Life with Opal</h1>
+<section class="hero-left hero-nudge">
+  <div class="product-col">
+  <div class="product-shot">
+    <div class="product-glow"></div>
+    <canvas id="bracelet" aria-hidden="true"></canvas>
+  </div>
   <p class="sub">Jewelry that you can trust.<br>Your life in context.</p>
-  <a class="preorder-btn" href="https://buy.stripe.com/eVqaEW7i1eAZ8Kr0Ca4wM00" target="_blank" rel="noopener">Pre-Order Now <span class="price">$10</span></a>
-  <p class="preorder-note">Limited early units. Or join the waitlist below.</p>
+  <div class="buy-block">
+    <div class="swatches" role="group" aria-label="Finish options">
+      <button type="button" class="sw sw-silver is-selected" aria-label="Silver"></button>
+      <button type="button" class="sw sw-gold" aria-label="Gold"></button>
+    </div>
+    <span class="stock"><strong>94</strong> pre-orders left</span>
+    <a class="buy-btn" href="https://buy.stripe.com/eVqaEW7i1eAZ8Kr0Ca4wM00" target="_blank" rel="noopener">Pre-Order Now <span class="buy-arrow">&rarr;</span></a>
+  </div>
+  </div>
 </section>
 
 <section class="hero-left" id="waitlist">
@@ -228,6 +265,33 @@ function frame(ts){
   }
 }
 requestAnimationFrame(frame);
+</script>
+
+<script>
+/* ---------- bracelet turntable: inline rotating product shot in the LEFT column of page 1 ---------- */
+(function(){
+  const bcv=document.getElementById('bracelet'); if(!bcv) return;
+  const bx=bcv.getContext('2d');
+  const NF=72, FW=560, FH=607, imgs=[]; let loaded=0, ready=false;
+  bcv.width=FW; bcv.height=FH;
+  for(let i=0;i<NF;i++){
+    const im=new Image();
+    im.onload=()=>{ if(++loaded===NF) ready=true; };
+    im.src='Resources/bracelet/b'+String(i).padStart(2,'0')+'.webp';
+    imgs[i]=im;
+  }
+  // continuous turntable spin (~18fps -> ~4s per full rotation)
+  let bi=0, blast=0;
+  function spin(ts){
+    requestAnimationFrame(spin);
+    if(!ready) return;
+    if(ts-blast<55) return; blast=ts;
+    bi=(bi+1)%NF;
+    bx.clearRect(0,0,FW,FH);
+    bx.drawImage(imgs[bi],0,0,FW,FH);
+  }
+  requestAnimationFrame(spin);
+})();
 </script>
 </body>
 </html>
