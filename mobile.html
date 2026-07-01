@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<script>/* desktop page: send phones / narrow screens to the mobile replica */(function(){try{var m=matchMedia('(max-width:768px)').matches||/Mobi|Android|iPhone|iPod|Windows Phone/i.test(navigator.userAgent);if(m)location.replace('mobile.html');}catch(e){}})();</script>
+<script>/* mobile replica: send desktop / wide screens to the desktop page */(function(){try{var m=matchMedia('(max-width:768px)').matches||/Mobi|Android|iPhone|iPod|Windows Phone/i.test(navigator.userAgent);if(!m)location.replace('index.html');}catch(e){}})();</script>
 <title>Opal — Futures</title>
 <meta name="description" content="Opal Futures — the shape of what's coming." />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJiIiBjeD0iMzglIiBjeT0iMzAlIiByPSI3OCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmY2ZlZmQiLz48c3RvcCBvZmZzZXQ9IjU1JSIgc3RvcC1jb2xvcj0iI2RjZWZlOSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2I2ZDZjZCIvPjwvcmFkaWFsR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJjIj48ZWxsaXBzZSBjeD0iMjAiIGN5PSIyMCIgcng9IjE1IiByeT0iMTgiLz48L2NsaXBQYXRoPjwvZGVmcz48ZWxsaXBzZSBjeD0iMjAiIGN5PSIyMCIgcng9IjE1IiByeT0iMTgiIGZpbGw9InVybCgjYikiIHN0cm9rZT0iI2YxZWFkZCIgc3Ryb2tlLXdpZHRoPSIxLjEiLz48ZyBjbGlwLXBhdGg9InVybCgjYykiIG9wYWNpdHk9IjAuODIiPjxwYXRoIGQ9Ik00IDIyIDE2IDEzIDIwIDI1IDggMzFaIiBmaWxsPSIjNTZkNGMyIi8+PHBhdGggZD0iTTE3IDcgMjkgMTEgMjQgMjIgMTQgMThaIiBmaWxsPSIjZjNiNGQ0Ii8+PHBhdGggZD0iTTIyIDIwIDM0IDE3IDMyIDMxIDIxIDMwWiIgZmlsbD0iI2Y0Y2Q2YiIvPjxwYXRoIGQ9Ik05IDI4IDIwIDI2IDIzIDM3IDEwIDM3WiIgZmlsbD0iIzdlYjZmMCIvPjxwYXRoIGQ9Ik0yNCAyNCAzNSAyNyAzMCAzNyAyMiAzM1oiIGZpbGw9IiM4ZWU0OWQiLz48Y2lyY2xlIGN4PSIxMyIgY3k9IjEyIiByPSIzIiBmaWxsPSIjZWY5ZmM2IiBvcGFjaXR5PSIuNjUiLz48Y2lyY2xlIGN4PSIyOCIgY3k9IjI1IiByPSIyLjQiIGZpbGw9IiM2ZmQxZmYiIG9wYWNpdHk9Ii41NSIvPjwvZz48ZWxsaXBzZSBjeD0iMTUiIGN5PSIxMyIgcng9IjUiIHJ5PSIzLjIiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii41Ii8+PC9zdmc+Cg==" />
@@ -43,7 +43,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:3}
 .brand .mark{width:44px;height:44px;flex:none}
 .brand .name{font-family:var(--serif);font-size:2.2rem;font-weight:500;color:var(--text);line-height:1}
 /* intro: logo starts large over the hero, holds ~1s, then retracts to the header centre */
-@keyframes logoReveal{0%,52%{transform:translateY(45vh) scale(4.4);pointer-events:none}100%{transform:none;pointer-events:auto}}
+@keyframes logoReveal{0%,52%{transform:translateY(45vh) scale(2.2);pointer-events:none}100%{transform:none;pointer-events:auto}}
 /* hero content stays hidden under the logo, then fades in as the logo retracts up */
 @keyframes contentReveal{0%,52%{opacity:0}100%{opacity:1}}
 @media(prefers-reduced-motion:reduce){.brand,.product-col{animation:none}}
