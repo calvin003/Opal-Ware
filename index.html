@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<script>/* desktop site: send phones / narrow screens to the mobile version */(function(){try{var m=matchMedia('(max-width:768px)').matches||/Mobi|Android|iPhone|iPod|Windows Phone/i.test(navigator.userAgent);if(m)location.replace('opal.html');}catch(e){}})();</script>
 <title>Opal — Futures</title>
 <meta name="description" content="Opal Futures — the shape of what's coming." />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJiIiBjeD0iMzglIiBjeT0iMzAlIiByPSI3OCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmY2ZlZmQiLz48c3RvcCBvZmZzZXQ9IjU1JSIgc3RvcC1jb2xvcj0iI2RjZWZlOSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2I2ZDZjZCIvPjwvcmFkaWFsR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJjIj48ZWxsaXBzZSBjeD0iMjAiIGN5PSIyMCIgcng9IjE1IiByeT0iMTgiLz48L2NsaXBQYXRoPjwvZGVmcz48ZWxsaXBzZSBjeD0iMjAiIGN5PSIyMCIgcng9IjE1IiByeT0iMTgiIGZpbGw9InVybCgjYikiIHN0cm9rZT0iI2YxZWFkZCIgc3Ryb2tlLXdpZHRoPSIxLjEiLz48ZyBjbGlwLXBhdGg9InVybCgjYykiIG9wYWNpdHk9IjAuODIiPjxwYXRoIGQ9Ik00IDIyIDE2IDEzIDIwIDI1IDggMzFaIiBmaWxsPSIjNTZkNGMyIi8+PHBhdGggZD0iTTE3IDcgMjkgMTEgMjQgMjIgMTQgMThaIiBmaWxsPSIjZjNiNGQ0Ii8+PHBhdGggZD0iTTIyIDIwIDM0IDE3IDMyIDMxIDIxIDMwWiIgZmlsbD0iI2Y0Y2Q2YiIvPjxwYXRoIGQ9Ik05IDI4IDIwIDI2IDIzIDM3IDEwIDM3WiIgZmlsbD0iIzdlYjZmMCIvPjxwYXRoIGQ9Ik0yNCAyNCAzNSAyNyAzMCAzNyAyMiAzM1oiIGZpbGw9IiM4ZWU0OWQiLz48Y2lyY2xlIGN4PSIxMyIgY3k9IjEyIiByPSIzIiBmaWxsPSIjZWY5ZmM2IiBvcGFjaXR5PSIuNjUiLz48Y2lyY2xlIGN4PSIyOCIgY3k9IjI1IiByPSIyLjQiIGZpbGw9IiM2ZmQxZmYiIG9wYWNpdHk9Ii41NSIvPjwvZz48ZWxsaXBzZSBjeD0iMTUiIGN5PSIxMyIgcng9IjUiIHJ5PSIzLjIiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii41Ii8+PC9zdmc+Cg==" />
@@ -191,7 +190,7 @@ function build(){
   const dpr=Math.min(devicePixelRatio||1,2);
   W=cv.clientWidth;H=cv.clientHeight;
   cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);
-  cxC=W*0.72;cyC=H*0.5;scale=Math.min(W,H)*0.30;
+  cxC=(matchMedia('(max-width:768px)').matches?0.5:0.72)*W;cyC=H*0.5;scale=Math.min(W,H)*0.30;  // ring centred on phones, right-of-centre on desktop
   parts=[];
   for(let i=0;i<N;i++){
     // target on a ring (torus): around the ring (u) and around the tube (v)
@@ -291,6 +290,17 @@ requestAnimationFrame(frame);
     bx.drawImage(imgs[bi],0,0,FW,FH);
   }
   requestAnimationFrame(spin);
+})();
+
+/* mobile only: hide the pixel ring on screen 1, fade it in as you scroll to screen 2 (desktop keeps it always visible) */
+(function(){
+  const ringCv=document.getElementById('x'), mq=matchMedia('(max-width:768px)');
+  function fade(){
+    if(!mq.matches){ ringCv.style.opacity=''; return; }        // desktop: leave it always on
+    const vh=innerHeight||1; let p=scrollY/vh; if(p<0)p=0; if(p>1)p=1;
+    ringCv.style.opacity=p.toFixed(3);
+  }
+  fade(); addEventListener('scroll',fade,{passive:true}); addEventListener('resize',fade);
 })();
 </script>
 </body>
