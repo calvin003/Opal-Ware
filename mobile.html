@@ -32,16 +32,15 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font
 /* page-1 product shot: bracelet turntable + iridescent glow, in the LEFT column (ring stays on the right) */
 .product-col{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:440px;animation:contentReveal 1.9s cubic-bezier(.7,0,.2,1) both}
 .product-col .sub{margin:0 0 26px;max-width:34ch}
-.product-shot{position:relative;width:clamp(120px,16vw,180px);margin-bottom:12px}
-.product-glow{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);width:155%;height:155%;border-radius:50%;z-index:0;pointer-events:none;background:radial-gradient(circle at 50% 45%,rgba(168,200,246,.60),rgba(236,185,226,.46) 38%,rgba(134,219,203,.34) 62%,rgba(247,215,156,.20) 78%,transparent 82%);filter:blur(34px)}
-#bracelet{position:relative;z-index:1;width:100%;height:auto;display:block;filter:drop-shadow(0 22px 40px rgba(60,70,90,.18))}
+.product-shot{position:relative;width:clamp(180px,24vw,252px);aspect-ratio:1/1;margin-bottom:12px}
+#braceletImg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:1;display:block;filter:drop-shadow(0 20px 34px rgba(60,70,90,.24));animation:floatBob 3s ease-in-out infinite}
+@keyframes floatBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
 
 /* nav */
 header{position:fixed;top:0;left:0;right:0;z-index:3}
 .nav{display:flex;align-items:center;justify-content:flex-end;height:84px;max-width:1280px;margin:0 auto;padding:0 32px;position:relative}
 .brand{display:flex;align-items:center;gap:14px;position:absolute;inset:0;margin:auto;width:max-content;height:max-content;text-decoration:none;animation:logoReveal 1.9s cubic-bezier(.7,0,.2,1) both}
-.brand .mark{width:44px;height:44px;flex:none}
-.brand .name{font-family:var(--serif);font-size:2.2rem;font-weight:500;color:var(--text);line-height:1}
+.brand-img{height:52px;width:auto;display:block}
 /* intro: logo starts large over the hero, holds ~1s, then retracts to the header centre */
 @keyframes logoReveal{0%,52%{transform:translateY(45vh) scale(2.2);pointer-events:none}100%{transform:none;pointer-events:auto}}
 /* hero content stays hidden under the logo, then fades in as the logo retracts up */
@@ -62,14 +61,18 @@ header{position:fixed;top:0;left:0;right:0;z-index:3}
 
 /* colour swatches (decorative) + BUY NOW button */
 .buy-block{display:flex;flex-direction:column;align-items:center}
-.swatches{display:flex;align-items:center;gap:14px;margin:0 0 16px}
+.swatches{display:flex;align-items:center;gap:12px;margin:0 0 16px}
 .stock{margin:0 0 6px;font-size:.9rem;color:var(--muted);font-weight:500;white-space:nowrap}
 .stock strong{color:var(--text);font-weight:700}
-.sw{width:34px;height:34px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:transform .2s var(--ease)}
-.sw:hover{transform:scale(1.1)}
+.sw{width:30px;height:30px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:transform .2s var(--ease)}
+.sw:hover{transform:scale(1.12)}
 .sw.is-selected{box-shadow:0 0 0 2px #fff,0 0 0 4px currentColor}
 .sw-silver{background:linear-gradient(135deg,#eef0f3,#b4b9c3);color:#aeb3bd}
 .sw-gold{background:linear-gradient(135deg,#f6e4a6,#c9a24b);color:#c9a24b}
+.sw-blue{background:linear-gradient(135deg,#dbe9f2,#8fb3cc);color:#8fb3cc}
+.sw-purple{background:linear-gradient(135deg,#e6dcf2,#9d84c4);color:#9d84c4}
+.sw-black{background:linear-gradient(135deg,#4a4a4d,#17181a);color:#3a3a3d}
+.sw-bronze{background:linear-gradient(135deg,#e2b98f,#8a5a34);color:#8a5a34}
 .buy-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:.9em;background:linear-gradient(120deg,#86dbcb,#a8c8f6,#ecb9e2,#f7d79c);background-size:180% 180%;animation:opalshift 8s ease infinite;color:#1b2230;font-family:var(--sans);font-weight:700;font-size:1.02rem;letter-spacing:.06em;text-transform:uppercase;border-radius:100px;padding:.5em .5em .5em 1.9em;text-decoration:none;box-shadow:0 14px 32px -14px rgba(120,180,210,.55);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
 .buy-btn:hover{transform:translateY(-2px);box-shadow:0 18px 40px -14px rgba(120,180,210,.7)}
 .buy-arrow{display:grid;place-items:center;width:2.5em;height:2.5em;border-radius:50%;background:#14161b;color:#fff;font-size:1.05rem;flex:none}
@@ -105,24 +108,8 @@ header{position:fixed;top:0;left:0;right:0;z-index:3}
 
 <header>
   <nav class="nav">
-    <a class="brand" href="opal.html">
-      <svg class="mark" viewBox="0 0 40 40" fill="none">
-        <defs>
-          <radialGradient id="opalBase" cx="38%" cy="30%" r="78%">
-            <stop offset="0%" stop-color="#fcfefd"/><stop offset="55%" stop-color="#dcefe9"/><stop offset="100%" stop-color="#b6d6cd"/>
-          </radialGradient>
-          <clipPath id="opalClip"><ellipse cx="20" cy="20" rx="15" ry="18"/></clipPath>
-        </defs>
-        <ellipse cx="20" cy="20" rx="15" ry="18" fill="url(#opalBase)" stroke="#f1eadd" stroke-width="1.1"/>
-        <g clip-path="url(#opalClip)" opacity="0.82">
-          <path d="M4 22 16 13 20 25 8 31Z" fill="#56d4c2"/><path d="M17 7 29 11 24 22 14 18Z" fill="#f3b4d4"/>
-          <path d="M22 20 34 17 32 31 21 30Z" fill="#f4cd6b"/><path d="M9 28 20 26 23 37 10 37Z" fill="#7eb6f0"/>
-          <path d="M24 24 35 27 30 37 22 33Z" fill="#8ee49d"/><circle cx="13" cy="12" r="3" fill="#ef9fc6" opacity=".65"/>
-          <circle cx="28" cy="25" r="2.4" fill="#6fd1ff" opacity=".55"/>
-        </g>
-        <ellipse cx="15" cy="13" rx="5" ry="3.2" fill="#fff" opacity=".5"/>
-      </svg>
-      <span class="name">Opal</span>
+    <a class="brand" href="opal.html" aria-label="Opal">
+      <img class="brand-img" src="Resources/opal-logo.webp" alt="Opal" />
     </a>
     <a class="contact-pill" href="mailto:langstonreid1@gmail.com">Contact Us</a>
   </nav>
@@ -131,14 +118,17 @@ header{position:fixed;top:0;left:0;right:0;z-index:3}
 <section class="hero-left hero-nudge">
   <div class="product-col">
   <div class="product-shot">
-    <div class="product-glow"></div>
-    <canvas id="bracelet" aria-hidden="true"></canvas>
+    <img id="braceletImg" src="Resources/colors/silver.webp" alt="Opal cuff" />
   </div>
   <p class="sub">Jewelry that you can trust.<br>Your life in context.</p>
   <div class="buy-block">
     <div class="swatches" role="group" aria-label="Finish options">
-      <button type="button" class="sw sw-silver is-selected" aria-label="Silver"></button>
-      <button type="button" class="sw sw-gold" aria-label="Gold"></button>
+      <button type="button" class="sw sw-silver is-selected" data-img="Resources/colors/silver.webp" aria-label="Silver"></button>
+      <button type="button" class="sw sw-gold" data-img="Resources/colors/gold.webp" aria-label="Gold"></button>
+      <button type="button" class="sw sw-blue" data-img="Resources/colors/blue.webp" aria-label="Ice blue"></button>
+      <button type="button" class="sw sw-purple" data-img="Resources/colors/purple.webp" aria-label="Purple"></button>
+      <button type="button" class="sw sw-black" data-img="Resources/colors/black.webp" aria-label="Black"></button>
+      <button type="button" class="sw sw-bronze" data-img="Resources/colors/bronze.webp" aria-label="Bronze"></button>
     </div>
     <span class="stock"><strong>94</strong> pre-orders left</span>
     <a class="buy-btn" href="https://buy.stripe.com/eVqaEW7i1eAZ8Kr0Ca4wM00" target="_blank" rel="noopener">Pre-Order Now <span class="buy-arrow">&rarr;</span></a>
@@ -268,31 +258,6 @@ requestAnimationFrame(frame);
 </script>
 
 <script>
-/* ---------- bracelet turntable: inline rotating product shot in the LEFT column of page 1 ---------- */
-(function(){
-  const bcv=document.getElementById('bracelet'); if(!bcv) return;
-  const bx=bcv.getContext('2d');
-  const NF=72, FW=560, FH=607, imgs=[]; let loaded=0, ready=false;
-  bcv.width=FW; bcv.height=FH;
-  for(let i=0;i<NF;i++){
-    const im=new Image();
-    im.onload=()=>{ if(++loaded===NF) ready=true; };
-    im.src='Resources/bracelet/b'+String(i).padStart(2,'0')+'.webp';
-    imgs[i]=im;
-  }
-  // continuous turntable spin (~18fps -> ~4s per full rotation)
-  let bi=0, blast=0;
-  function spin(ts){
-    requestAnimationFrame(spin);
-    if(!ready) return;
-    if(ts-blast<55) return; blast=ts;
-    bi=(bi+1)%NF;
-    bx.clearRect(0,0,FW,FH);
-    bx.drawImage(imgs[bi],0,0,FW,FH);
-  }
-  requestAnimationFrame(spin);
-})();
-
 /* mobile only: hide the pixel ring on screen 1, fade it in as you scroll to screen 2 (desktop keeps it always visible) */
 (function(){
   const ringCv=document.getElementById('x'), mq=matchMedia('(max-width:768px)');
@@ -302,6 +267,19 @@ requestAnimationFrame(frame);
     ringCv.style.opacity=p.toFixed(3);
   }
   fade(); addEventListener('scroll',fade,{passive:true}); addEventListener('resize',fade);
+})();
+
+/* colour swatches: click a finish -> show that finish's product image */
+(function(){
+  const img=document.getElementById('braceletImg');
+  if(!img) return;
+  const sws=document.querySelectorAll('.swatches .sw');
+  sws.forEach(sw=>sw.addEventListener('click',()=>{
+    sws.forEach(s=>s.classList.remove('is-selected'));
+    sw.classList.add('is-selected');
+    const src=sw.getAttribute('data-img');
+    if(src) img.src=src;
+  }));
 })();
 </script>
 </body>
