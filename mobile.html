@@ -73,9 +73,11 @@ header{position:fixed;top:0;left:0;right:0;z-index:3}
 .sw-purple{background:linear-gradient(135deg,#e6dcf2,#9d84c4);color:#9d84c4}
 .sw-black{background:linear-gradient(135deg,#4a4a4d,#17181a);color:#3a3a3d}
 .sw-bronze{background:linear-gradient(135deg,#e2b98f,#8a5a34);color:#8a5a34}
-.buy-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:.9em;background:linear-gradient(120deg,#86dbcb,#a8c8f6,#ecb9e2,#f7d79c);background-size:180% 180%;animation:opalshift 8s ease infinite;color:#1b2230;font-family:var(--sans);font-weight:700;font-size:1.02rem;letter-spacing:.06em;text-transform:uppercase;border-radius:100px;padding:.5em .5em .5em 1.9em;text-decoration:none;box-shadow:0 14px 32px -14px rgba(120,180,210,.55);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.buy-btn{align-self:flex-start;display:inline-flex;align-items:center;justify-content:space-between;width:clamp(240px,78vw,330px);max-width:100%;background:linear-gradient(120deg,#86dbcb,#a8c8f6,#ecb9e2,#f7d79c);background-size:180% 180%;animation:opalshift 8s ease infinite;color:#1b2230;font-family:var(--sans);font-weight:600;font-size:1.08rem;border-radius:100px;padding:.8em 1.7em;text-decoration:none;box-shadow:0 14px 32px -14px rgba(120,180,210,.55);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
 .buy-btn:hover{transform:translateY(-2px);box-shadow:0 18px 40px -14px rgba(120,180,210,.7)}
-.buy-arrow{display:grid;place-items:center;min-width:2.5em;height:2.5em;padding:0 .75em;border-radius:100px;background:#fff;color:#14161b;font-size:1rem;font-weight:700;flex:none}
+.buy-label{font-weight:600}
+.buy-price{font-weight:700;white-space:nowrap}
+.buy-price s{color:rgba(27,34,48,.45);font-weight:500;margin-right:.45em;text-decoration-thickness:1.5px}
 
 /* waitlist screen (one page lower) */
 .eyebrow{display:inline-block;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:#3a7d75;font-weight:600;margin-bottom:18px;align-self:flex-start}
@@ -131,7 +133,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:3}
       <button type="button" class="sw sw-bronze" data-img="Resources/colors/bronze.webp" aria-label="Bronze"></button>
     </div>
     <span class="stock"><strong>56</strong> pre-orders left</span>
-    <a class="buy-btn" href="https://buy.stripe.com/eVqaEW7i1eAZ8Kr0Ca4wM00" target="_blank" rel="noopener">Pre-Order Now <span class="buy-arrow">$119</span></a>
+    <a class="buy-btn" href="https://buy.stripe.com/eVqaEW7i1eAZ8Kr0Ca4wM00" target="_blank" rel="noopener"><span class="buy-label">Preorder</span><span class="buy-price"><s>$299</s> $10</span></a>
   </div>
   </div>
 </section>
